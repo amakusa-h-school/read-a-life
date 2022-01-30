@@ -107,6 +107,13 @@ function chartSleep(datas) {
                         color: '#fff',
                     }
                 },
+                tooltip: {
+                    callbacks: {
+                        footer: function(t) {
+                            return `睡眠時間: ${ t[0].raw[0] - t[0].raw[1] }時間`;
+                        }
+                    }
+                }
             },
             scales: {
                 x: {
