@@ -47,8 +47,24 @@ function chartTemperature(datas) {
                     suggestedMax: 38,
                     ticks: {
                         stepSize: 0.5,
-                        maxTicksLimit: 20
+                        maxTicksLimit: 20,
+                        color: function(context) {
+                            if (context.tick.value >= 37.5) {
+                                return "#f43f5e";
+                            } else {
+                                return context.tick.color;
+                            }
+                        }
                     },
+                    grid: {
+                        color: function(context) {
+                            if (context.tick.value >= 37.5) {
+                                return "#f43f5e";
+                            } else {
+                                return context.tick.color;
+                            }
+                        }
+                    }
                 }
             }
         }
