@@ -1,20 +1,4 @@
 const START = "2022-01-21";
-const LABEL = [];
-const DATA  = {
-    labels: {},
-    datasets: [],
-};
-
-const CONFIG = {
-    type: '',
-    data: {},
-    options: {
-        scales: {
-            x: {},
-            y: {},
-        }
-    }
-};
 
 /**
  * 体温グラフの作成 ==========================================================
@@ -252,7 +236,7 @@ function chartStudyStuck(datas) {
         var g = 247 - (i / dateArray.length * 50);
         var b = 237 - (i / dateArray.length * 100);
         var dataset = {
-            label: dateArray[i],
+            label: moment(dateArray[i]).format("MM-DD (ddd)"),
             backgroundColor: `rgb(${ r }, ${ g }, ${ b })`,
             data: [],
         }

@@ -42,16 +42,16 @@ function formatDate(dt) {
  * @retruns {*} dateArray 日付の配列
  */
 function generateDateArray(from) {
-    const start = new Date(from);
-    const end   = new Date();
+    const start = moment(from);
+    const end   = moment();
 
     const dateArray = [];
 
     let activeDate = start;
 
     while (activeDate <= end) {
-        dateArray.push(formatDate(activeDate));
-        activeDate.setDate(activeDate.getDate() + 1);
+        dateArray.push(activeDate.format("YYYY-MM-DD"));
+        activeDate.add(1, "days");
     }
 
     return dateArray;
@@ -59,8 +59,8 @@ function generateDateArray(from) {
 
 function sortDatas(datas) {
     const sortedData = datas.sort(function(a, b) {
-        if (a.date < b.date) return -1;
-        if (a.date > b.date) return 1;
+        if (moment(a.date).isBefore(moment(b.date))) return -1;
+        if (moment(a.date).isAfter(moment(b.date))) return -1;
         return 0;
     });
 
