@@ -1,5 +1,5 @@
 const sleep = waitTime => new Promise( resolve => setTimeout(resolve, waitTime) );
-const FETCH_URL = "https://script.google.com/macros/s/AKfycbyfJPjdqXzyVQUck1HFoVtePB-X7oX4gZxdgSvwv7DLyicBXe0fkk92rnaHwZ0OmghD/exec";
+const FETCH_URL = "https://script.google.com/macros/s/AKfycbwSZxyAT9lYom9aR4Mv8aflp053Y1tXe6W1yLOLaVpMtB4Xc8UhodX7PiFE0JRO9wDx/exec";
 
 async function fetchData(uid) {
     const url = FETCH_URL + `?uid=${ uid }`;
