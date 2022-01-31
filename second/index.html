@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css -->
+
+    <!-- javascript -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+
+    <script src="./js/utils.js"></script>
+    <script src="./js/themeColor.js"></script>
+    <script src="./js/dataFetch.js"></script>
+    <script src="./js/useChart.js"></script>
+    <script src="./js/main.js"></script>
+
+    <title>Read a Life</title>
+</head>
+<body class="min-h-screen min-w-screen overflow-x-hidden bg-slate-100">
+    <div id="back-ground-color" class="fixed top-0 z-[-10] h-[360px] w-full bg-stone-400"></div>
+    <div class="fixed top-[360px] z-[-10] w-full " style="height: calc(100% - 360px);">
+        <img src="./src/bg.png" class="absolute bottom-8 right-8">
+    </div>
+
+    <header
+        class="overflow-x-scroll"
+    >
+        <div class="flex flex-row flex-nowrap justify-end min-w-[640px] max-w-screen-xl m-auto">
+            <div class="basis-1/2 p-2">
+                <h1 class="text-3xl font-black text-white">Read a Life</h1>
+            </div>
+            <div class="basis-1/2 p-2 flex flex-row justify-end items-center">
+                <div class="flex flex-row flex-nowrap h-full items-center bg-white rounded-full">
+                    <button onclick="changeColor('bg-red-400')" class="bg-red-400 w-8 h-8 m-1 rounded-full shadow hover:shadow-lg"></button>
+                    <button onclick="changeColor('bg-amber-400')" class="bg-amber-400 w-8 h-8 m-1 rounded-full shadow hover:shadow-lg"></button>
+                    <button onclick="changeColor('bg-green-400')" class="bg-green-400 w-8 h-8 m-1 rounded-full shadow hover:shadow-lg"></button>
+                    <button onclick="changeColor('bg-blue-400')" class="bg-blue-400 w-8 h-8 m-1 rounded-full shadow hover:shadow-lg"></button>
+                    <button onclick="changeColor('bg-purple-400')" class="bg-purple-400 w-8 h-8 m-1 rounded-full shadow hover:shadow-lg"></button>
+                    <button onclick="changeColor('bg-stone-400')" class="bg-stone-400 w-8 h-8 m-1 rounded-full shadow hover:shadow-lg"></button>
+                </div>
+                <div class="ml-1 flex justify-around items-center">
+                    <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdDp-RVRs4qUmMAmu5yovtTDK-cIK6Cd67T8MlYo9Oyf4gwKA/viewform" 
+                        class="text-white text-sm font-bold whitespace-nowrap hover:underline"
+                        target="_blank" rel="noopener noreferrer"
+                    >
+                        ２年生入力
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen">
+        <!-- 生徒情報 -->
+        <div class="h-[240px] max-w-screen-xl m-auto p-1 lg:p-4 flex items-end text-white">
+            <h2 id="personal" class="text-2xl font-semibold py-6">現在読み込んでいます。これには３０秒ほどかかります。</h2>
+        </div>
+
+        <!-- データ -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-screen-xl m-auto mb-32">
+            <div id="temperature" class="bg-white rounded-lg shadow-lg w-full p-1 lg:p-4">
+                <h3 class="text-lg font-bold h-12">体温の推移</h3>
+                <div 
+                    class="h-fit flex justify-center items-center"
+                    style="height: calc(100% - 3rem);"
+                >
+                    <canvas id="temperature-chart" class="hidden"></canvas>
+                    <div id="temperature-load">
+                        <svg class="animate-spin h-8 w-8 fill-slate-100 svg-inline--fa fa-spinner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M96 256c0-26.5-21.5-48-48-48S0 229.5 0 256s21.5 48 48 48S96 282.5 96 256zM108.9 60.89c-26.5 0-48.01 21.49-48.01 47.99S82.39 156.9 108.9 156.9s47.99-21.51 47.99-48.01S135.4 60.89 108.9 60.89zM108.9 355.1c-26.5 0-48.01 21.51-48.01 48.01S82.39 451.1 108.9 451.1s47.99-21.49 47.99-47.99S135.4 355.1 108.9 355.1zM256 416c-26.5 0-48 21.5-48 48S229.5 512 256 512s48-21.5 48-48S282.5 416 256 416zM464 208C437.5 208 416 229.5 416 256s21.5 48 48 48S512 282.5 512 256S490.5 208 464 208zM403.1 355.1c-26.5 0-47.99 21.51-47.99 48.01S376.6 451.1 403.1 451.1s48.01-21.49 48.01-47.99S429.6 355.1 403.1 355.1zM256 0C229.5 0 208 21.5 208 48S229.5 96 256 96s48-21.5 48-48S282.5 0 256 0z"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sleep" class="bg-gradient-to-b from-sky-900 to-amber-700 text-white rounded-lg shadow-lg w-full p-1 lg:p-4">
+                <h3 class="text-lg font-bold h-12">睡眠時間の推移</h3>
+                <div 
+                    class="w-full h-full flex justify-center items-center"
+                    style="height: calc(100% - 3rem);"
+                >
+                    <canvas id="sleep-chart" class="hidden"></canvas>
+                    <div id="sleep-load">
+                        <svg class="animate-spin h-8 w-8 fill-slate-100 svg-inline--fa fa-spinner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M96 256c0-26.5-21.5-48-48-48S0 229.5 0 256s21.5 48 48 48S96 282.5 96 256zM108.9 60.89c-26.5 0-48.01 21.49-48.01 47.99S82.39 156.9 108.9 156.9s47.99-21.51 47.99-48.01S135.4 60.89 108.9 60.89zM108.9 355.1c-26.5 0-48.01 21.51-48.01 48.01S82.39 451.1 108.9 451.1s47.99-21.49 47.99-47.99S135.4 355.1 108.9 355.1zM256 416c-26.5 0-48 21.5-48 48S229.5 512 256 512s48-21.5 48-48S282.5 416 256 416zM464 208C437.5 208 416 229.5 416 256s21.5 48 48 48S512 282.5 512 256S490.5 208 464 208zM403.1 355.1c-26.5 0-47.99 21.51-47.99 48.01S376.6 451.1 403.1 451.1s48.01-21.49 48.01-47.99S429.6 355.1 403.1 355.1zM256 0C229.5 0 208 21.5 208 48S229.5 96 256 96s48-21.5 48-48S282.5 0 256 0z"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="study-stuck" class="bg-white rounded-lg shadow-lg w-full h-full p-1 lg:p-4">
+                <h3 class="text-lg font-bold h-12">学習の積み上げ(教科ごと)</h3>
+                <div 
+                    class="w-full h-full flex justify-center items-center"
+                    style="height: calc(100% - 3rem);"
+                >
+                    <canvas id="study-stuck-chart" class="hidden"></canvas>
+                    <div id="study-stuck-load">
+                        <svg class="animate-spin h-8 w-8 fill-slate-100 svg-inline--fa fa-spinner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M96 256c0-26.5-21.5-48-48-48S0 229.5 0 256s21.5 48 48 48S96 282.5 96 256zM108.9 60.89c-26.5 0-48.01 21.49-48.01 47.99S82.39 156.9 108.9 156.9s47.99-21.51 47.99-48.01S135.4 60.89 108.9 60.89zM108.9 355.1c-26.5 0-48.01 21.51-48.01 48.01S82.39 451.1 108.9 451.1s47.99-21.49 47.99-47.99S135.4 355.1 108.9 355.1zM256 416c-26.5 0-48 21.5-48 48S229.5 512 256 512s48-21.5 48-48S282.5 416 256 416zM464 208C437.5 208 416 229.5 416 256s21.5 48 48 48S512 282.5 512 256S490.5 208 464 208zM403.1 355.1c-26.5 0-47.99 21.51-47.99 48.01S376.6 451.1 403.1 451.1s48.01-21.49 48.01-47.99S429.6 355.1 403.1 355.1zM256 0C229.5 0 208 21.5 208 48S229.5 96 256 96s48-21.5 48-48S282.5 0 256 0z"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="study" class="bg-white rounded-lg shadow-lg w-full h-full p-1 lg:p-4">
+                <h3 class="text-lg font-bold h-12">学習時間の推移</h3>
+                <div 
+                    class="w-full h-full flex justify-center items-center"
+                    style="height: calc(100% - 3rem);"
+                >
+                    <canvas id="study-chart" class="hidden"></canvas>
+                    <div id="study-load">
+                        <svg class="animate-spin h-8 w-8 fill-slate-100 svg-inline--fa fa-spinner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M96 256c0-26.5-21.5-48-48-48S0 229.5 0 256s21.5 48 48 48S96 282.5 96 256zM108.9 60.89c-26.5 0-48.01 21.49-48.01 47.99S82.39 156.9 108.9 156.9s47.99-21.51 47.99-48.01S135.4 60.89 108.9 60.89zM108.9 355.1c-26.5 0-48.01 21.51-48.01 48.01S82.39 451.1 108.9 451.1s47.99-21.49 47.99-47.99S135.4 355.1 108.9 355.1zM256 416c-26.5 0-48 21.5-48 48S229.5 512 256 512s48-21.5 48-48S282.5 416 256 416zM464 208C437.5 208 416 229.5 416 256s21.5 48 48 48S512 282.5 512 256S490.5 208 464 208zM403.1 355.1c-26.5 0-47.99 21.51-47.99 48.01S376.6 451.1 403.1 451.1s48.01-21.49 48.01-47.99S429.6 355.1 403.1 355.1zM256 0C229.5 0 208 21.5 208 48S229.5 96 256 96s48-21.5 48-48S282.5 0 256 0z"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t mx-2 p-2">
+        <div class="max-w-screen-xl m-auto flex justify-center">
+            <a 
+                href="https://sh.higo.ed.jp/amakusa/" 
+                class="text-sm font-bold whitespace-nowrap hover:underline"
+                target="_blank" rel="noopener noreferrer"
+            >
+                熊本県立天草高校
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
