@@ -4,9 +4,10 @@ const START = "2022-01-21";
  * 体温グラフの作成 ==========================================================
  * @param {*} datas 
  */
-function chartTemperature(datas) {
+function chartTemperature(datas, from=START, to=moment().format("YYYY-MM-DD")) {
+    
     // 初期化
-    const dateArray = generateDateArray(START);
+    const dateArray = generateDateArray(from, to);
     const labels = [];
     const data   = {
         labels: {},
@@ -69,20 +70,20 @@ function chartTemperature(datas) {
     config.data = data;
 
     // 描画処理
-    const myChart = new Chart(
+    window.temperatureChart = new Chart(
         document.getElementById("temperature-chart"),
         config
     );
-    myChart.options.aspectRatio = 1.8;
+    temperatureChart.options.aspectRatio = 1.8;
 }
 
 /**
  * 睡眠グラフの作成 ==========================================================
  * @param {*} datas 
  */
-function chartSleep(datas) {
+function chartSleep(datas, from=START, to=moment().format("YYYY-MM-DD")) {
     // 初期化
-    const dateArray = generateDateArray(START);
+    const dateArray = generateDateArray(from, to);
     const labels = [];
     const data   = {
         labels: {},
@@ -197,22 +198,22 @@ function chartSleep(datas) {
     config.data = data;
 
     // 描画処理
-    const myChart = new Chart(
+    window.sleepChart = new Chart(
         document.getElementById("sleep-chart"),
         config
     );
-    myChart.options.aspectRatio = 1.8;
+    window.sleepChart.options.aspectRatio = 1.8;
 }
 
 /**
  * 学習時間グラフの作成 ==========================================================
  * @param {*} datas 
  */
-function chartStudyStuck(datas) {
+function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
     // 初期化
     const today     = moment();
     const yesterday = moment().subtract(1, "days");
-    const dateArray = generateDateArray(START);
+    const dateArray = generateDateArray(from, to);
     const labels = ["国語", "数学", "英語", "社会", "理科", "その他"];
     const data   = {
         labels: {},
@@ -271,20 +272,20 @@ function chartStudyStuck(datas) {
     config.data = data;
 
     // 描画処理
-    const myChart = new Chart(
+    window.stadyStuckChart = new Chart(
         document.getElementById("study-stuck-chart"),
         config
     );
-    myChart.options.aspectRatio = 1.8;
+    window.stadyStuckChart.options.aspectRatio = 1.8;
 }
 
 /**
  * 学習時間(合計)グラフの作成 ==========================================================
  * @param {*} datas 
  */
- function chartStudy(datas) {
+ function chartStudy(datas, from=START, to=moment().format("YYYY-MM-DD")) {
     // 初期化
-    const dateArray = generateDateArray(START);
+    const dateArray = generateDateArray(from, to);
     const labels = [];
     const data   = {
         labels: {},
@@ -330,9 +331,9 @@ function chartStudyStuck(datas) {
     config.data = data;
 
     // 描画処理
-    const myChart = new Chart(
+    window.studyChart = new Chart(
         document.getElementById("study-chart"),
         config
     );
-    myChart.options.aspectRatio = 1.8;
+    window.studyChart.options.aspectRatio = 1.8;
 }

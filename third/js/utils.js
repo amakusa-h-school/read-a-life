@@ -41,9 +41,9 @@ function formatDate(dt) {
  * @param {*} from 始まりの日付(format: "yyyy-MM-dd")
  * @retruns {*} dateArray 日付の配列
  */
-function generateDateArray(from) {
+ function generateDateArray(from, to) {
     const start = moment(from);
-    const end   = moment();
+    const end   = moment(to);
 
     const dateArray = [];
 
@@ -57,6 +57,11 @@ function generateDateArray(from) {
     return dateArray;
 }
 
+/**
+ * 日付順でデータ配列をソートしたものを返す。
+ * @param {*} datas 
+ * @returns 
+ */
 function sortDatas(datas) {
     const sortedData = datas.sort(function(a, b) {
         if (moment(a.date).isBefore(moment(b.date))) return -1;
