@@ -249,9 +249,28 @@ function chartStudyStuck(datas) {
         }
         for (let j = 0; j < datas.length; j++) {
             if (moment(dateArray[i]).add(1, "days").format("YYYY-MM-DD") == datas[j].date) {
+                if (datas[j].kokugo == "300越え") {
+                    datas[j].kokugo = 300;
+                }
+                if (datas[j].sugaku == "300越え") {
+                    datas[j].sugaku = 300;
+                }
+                if (datas[j].eigo == "300越え") {
+                    datas[j].eigo = 300;
+                }
+                if (datas[j].shakai == "300越え") {
+                    datas[j].shakai = 300;
+                }
+                if (datas[j].rika == "300越え") {
+                    datas[j].rika = 300;
+                }
+                if (datas[j].other == "300越え") {
+                    datas[j].other = 300;
+                }
                 dataset.data.push(datas[j].kokugo);
                 dataset.data.push(datas[j].sugaku);
                 dataset.data.push(datas[j].eigo);
+                dataset.data.push(datas[j].rika);
                 dataset.data.push(datas[j].shakai);
                 dataset.data.push(datas[j].other);
             }
