@@ -94,11 +94,11 @@ function weeklyChart() {
         end = d.format("YYYY-MM-DD")
     }
     // studentDataから１週間分を取り出す
-    const datas = [];
+    const datas = [null, null, null, null, null, null, null];
     for (let i=0; i<weekdays.length; i++) {
         for (let j=0; j< temp.length; j++) {
             if (weekdays[i] == temp[j].date) {
-                datas.push(temp[j]);
+                datas[i] = temp[j].date;
             }
         }
     }
