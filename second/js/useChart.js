@@ -250,7 +250,7 @@ function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
             data: [],
         }
         for (let j = 0; j < datas.length; j++) {
-            if (datas[j].date == moment(dateArray[i]).format("YYYY-MM-DD")) {
+            if (moment(dateArray[i]).add(1, "days").format("YYYY-MM-DD") == datas[j].date) {
                 if (datas[j].kokugo == "300越え") {
                     datas[j].kokugo = 300;
                 }
@@ -282,7 +282,6 @@ function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
             dataset.label           = "昨日";
             dataset.backgroundColor = "#ea580c";
         }
-        console.log(dataset);
         if (dateArray[i] != today.format("YYYY-MM-DD")) {
             data.datasets.push(dataset);
         }
