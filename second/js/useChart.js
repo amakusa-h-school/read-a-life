@@ -280,9 +280,9 @@ function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
             dataset.label           = "昨日";
             dataset.backgroundColor = "#ea580c";
         }
-        if (dateArray[i] != today.format("YYYY-MM-DD")) {
-            data.datasets.push(dataset);
-        }
+        // if (dateArray[i] != today.format("YYYY-MM-DD")) {
+        //     data.datasets.push(dataset);
+        // }
     }
 
     // configの更新
