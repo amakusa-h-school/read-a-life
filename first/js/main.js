@@ -98,7 +98,7 @@ function weeklyChart() {
     for (let i=0; i<weekdays.length; i++) {
         for (let j=0; j< temp.length; j++) {
             if (weekdays[i] == temp[j].date) {
-                datas[i] = temp[j].date;
+                datas[i] = temp[j];
             }
         }
     }
