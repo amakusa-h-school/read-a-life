@@ -213,7 +213,8 @@ function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
     // 初期化
     const today     = moment();
     const yesterday = moment().subtract(1, "days");
-    const dateArray = generateDateArray(from, to);
+    const dateArray = generateDateArray(moment(from).subtract(1, "days").format("YYYY-MM-DD"), moment(to).subtract(1, "days").format("YYYY-MM-DD"));
+
     const labels = ["国語", "数学", "英語", "社会", "理科", "その他"];
     const data   = {
         labels: {},
@@ -302,7 +303,8 @@ function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
  */
  function chartStudy(datas, from=START, to=moment().format("YYYY-MM-DD")) {
     // 初期化
-    const dateArray = generateDateArray(from, to);
+    const dateArray = generateDateArray(moment(from).subtract(1, "days").format("YYYY-MM-DD"), moment(to).subtract(1, "days").format("YYYY-MM-DD"));
+    
     const labels = [];
     const data   = {
         labels: {},
