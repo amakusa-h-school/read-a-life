@@ -102,9 +102,6 @@ function weeklyChart() {
         }
     }
 
-    console.log(weekdays);
-    console.log(datas);
-
     // 前のグラフを削除
     window.temperatureChart.destroy();
     window.sleepChart.destroy();
