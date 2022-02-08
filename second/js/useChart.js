@@ -250,30 +250,32 @@ function chartStudyStuck(datas, from=START, to=moment().format("YYYY-MM-DD")) {
             data: [],
         }
         for (let j = 0; j < datas.length; j++) {
-            if (datas[j].kokugo == "300越え") {
-                datas[j].kokugo = 300;
+            if (datas[j].date == moment(dateArray[i]).format("MM-DD (ddd)")) {
+                if (datas[j].kokugo == "300越え") {
+                    datas[j].kokugo = 300;
+                }
+                if (datas[j].sugaku == "300越え") {
+                    datas[j].sugaku = 300;
+                }
+                if (datas[j].eigo == "300越え") {
+                    datas[j].eigo = 300;
+                }
+                if (datas[j].shakai == "300越え") {
+                    datas[j].shakai = 300;
+                }
+                if (datas[j].rika == "300越え") {
+                    datas[j].rika = 300;
+                }
+                if (datas[j].other == "300越え") {
+                    datas[j].other = 300;
+                }
+                dataset.data.push(datas[j].kokugo);
+                dataset.data.push(datas[j].sugaku);
+                dataset.data.push(datas[j].eigo);
+                dataset.data.push(datas[j].rika);
+                dataset.data.push(datas[j].shakai);
+                dataset.data.push(datas[j].other);
             }
-            if (datas[j].sugaku == "300越え") {
-                datas[j].sugaku = 300;
-            }
-            if (datas[j].eigo == "300越え") {
-                datas[j].eigo = 300;
-            }
-            if (datas[j].shakai == "300越え") {
-                datas[j].shakai = 300;
-            }
-            if (datas[j].rika == "300越え") {
-                datas[j].rika = 300;
-            }
-            if (datas[j].other == "300越え") {
-                datas[j].other = 300;
-            }
-            dataset.data.push(datas[j].kokugo);
-            dataset.data.push(datas[j].sugaku);
-            dataset.data.push(datas[j].eigo);
-            dataset.data.push(datas[j].rika);
-            dataset.data.push(datas[j].shakai);
-            dataset.data.push(datas[j].other);
         }
 
         if (dateArray[i] == yesterday.format("YYYY-MM-DD")) {
